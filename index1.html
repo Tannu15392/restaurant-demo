@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fireside Grill – Premium Dining</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Poppins,sans-serif;background:#0b0f19;color:#fff;overflow-x:hidden}
+
+/* NAVBAR */
+header{
+position:fixed;
+top:0;
+width:100%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 60px;
+background:rgba(0,0,0,.45);
+backdrop-filter:blur(12px);
+z-index:1000;
+transition:.35s
+}
+
+header.scrolled{background:#05070d;padding:14px 60px}
+
+.logo{font-family:'Playfair Display';font-size:26px;color:#ff6b3d}
+
+nav a{margin-left:28px;text-decoration:none;color:#ddd;font-size:15px;transition:.3s}
+nav a:hover{color:#ff6b3d}
+
+/* HERO */
+.hero{
+height:100vh;
+background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.7)),url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4') center/cover fixed;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px
+}
+
+.hero h1{font-family:'Playfair Display';font-size:70px;margin-bottom:10px;animation:fadeUp 1s ease}
+.hero p{font-size:20px;opacity:.85;margin-bottom:25px;animation:fadeUp 1.4s ease}
+
+.hero button{
+padding:14px 34px;font-size:16px;border-radius:30px;border:none;
+background:linear-gradient(45deg,#ff6b3d,#ff9f43);color:white;cursor:pointer;transition:.35s
+}
+
+.hero button:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 15px 35px rgba(0,0,0,.5)}
+
+/* SECTION */
+section{padding:100px 10%}
+
+.section-title{
+font-family:'Playfair Display';
+font-size:42px;
+margin-bottom:55px;
+text-align:center;
+color:#ff6b3d
+}
+
+/* MENU FILTER */
+.filters{
+display:flex;justify-content:center;gap:15px;margin-bottom:40px;flex-wrap:wrap
+}
+
+.filters button{
+padding:10px 18px;border:none;border-radius:25px;background:#1e2434;color:white;cursor:pointer;transition:.3s
+}
+
+.filters button.active,
+.filters button:hover{background:#ff6b3d}
+
+/* MENU GRID */
+.menu-grid{
+display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px
+}
+
+.card{
+background:#121827;border-radius:18px;overflow:hidden;transition:.4s;transform:translateY(40px);opacity:0
+}
+
+.card.show{opacity:1;transform:translateY(0)}
+
+.card:hover{transform:translateY(-12px) scale(1.03);box-shadow:0 20px 45px rgba(0,0,0,.55)}
+
+.card img{width:100%;height:190px;object-fit:cover;transition:.4s}
+.card:hover img{transform:scale(1.1)}
+
+.card-content{padding:22px}
+.price{color:#ff6b3d;font-weight:600;margin-top:10px}
+
+/* STORY */
+.story{
+display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:50px
+}
+
+.story img{width:100%;border-radius:20px;transform:translateX(-60px);opacity:0;transition:.7s}
+.story img.show{transform:translateX(0);opacity:1}
+
+.story-text h2{font-family:'Playfair Display';font-size:40px;margin-bottom:15px}
+.story-text p{opacity:.8;line-height:1.7}
+
+/* GALLERY */
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.gallery img{width:100%;height:180px;object-fit:cover;border-radius:12px;cursor:pointer;transition:.35s}
+.gallery img:hover{transform:scale(1.08)}
+
+/* LIGHTBOX */
+.lightbox{
+position:fixed;top:0;left:0;width:100%;height:100%;
+background:rgba(0,0,0,.9);
+display:flex;align-items:center;justify-content:center;
+visibility:hidden;opacity:0;transition:.3s;z-index:2000
+}
+
+.lightbox img{max-width:85%;max-height:85%;border-radius:10px}
+.lightbox.show{visibility:visible;opacity:1}
+
+/* CTA */
+.cta{text-align:center;background:linear-gradient(45deg,#ff6b3d,#ff9f43);padding:70px 20px;border-radius:18px}
+.cta h2{font-size:38px;margin-bottom:15px}
+
+.cta button{padding:14px 32px;border:none;border-radius:30px;font-size:16px;cursor:pointer}
+
+/* FOOTER */
+footer{text-align:center;padding:40px;margin-top:50px;opacity:.7}
+
+/* FLOATING ORDER */
+.order-btn{
+position:fixed;bottom:25px;right:25px;padding:14px 22px;border-radius:30px;background:#ff6b3d;
+cursor:pointer;font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,.4);z-index:1000
+}
+
+/* ANIMATION */
+@keyframes fadeUp{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:800px){
+.hero h1{font-size:45px}
+.story{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<header id="header">
+<div class="logo">Fireside Grill</div>
+<nav>
+<a href="#">Home</a>
+<a href="#menu">Menu</a>
+<a href="#gallery">Gallery</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
+<section class="hero">
+<h1>Luxury Dining Experience</h1>
+<p>Crafted flavors, unforgettable moments</p>
+<button onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Explore Menu</button>
+</section>
+
+<section id="menu">
+<h2 class="section-title">Chef Specials</h2>
+
+<div class="filters">
+<button class="active" onclick="filterMenu('all')">All</button>
+<button onclick="filterMenu('veg')">Veg</button>
+<button onclick="filterMenu('nonveg')">Non‑Veg</button>
+<button onclick="filterMenu('dessert')">Dessert</button>
+</div>
+
+<div class="menu-grid" id="menuGrid">
+
+<div class="card" data-category="veg">
+<img src="https://images.unsplash.com/photo-1738334255155-263552f68408?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+<div class="card-content">
+<h3>Cheese Stretch Pizza</h3>
+<p>Hot pizza with melted mozzarella stretch.</p>
+<div class="price">₹279</div>
+</div>
+</div>
+
+
+<div class="card" data-category="veg">
+<img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=60">
+<div class="card-content">
+<h3>Veg Burger</h3>
+<p>Crispy patty & fresh veggies.</p>
+<div class="price">₹199</div>
+</div>
+</div>
+<div class="card" data-category="veg">
+<img src="https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb">
+<div class="card-content">
+<h3>Pasta Alfredo</h3>
+<p>Creamy Italian pasta delight.</p>
+<div class="price">₹249</div>
+</div>
+</div>
+
+<div class="card" data-category="dessert">
+<img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587">
+<div class="card-content">
+<h3>Chocolate Cake</h3>
+<p>Rich chocolate indulgence.</p>
+<div class="price">₹149</div>
+</div>
+</div>
+
+</div>
+</section>
+
+<section class="story">
+<img id="storyImg" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0">
+
+<div class="story-text">
+<h2>Our Story</h2>
+<p>At Fireside Grill, we believe food is more than a meal — it’s an experience. Our chefs combine modern techniques with authentic flavors to craft unforgettable dishes.</p>
+</div>
+</section>
+
+<section id="gallery">
+<h2 class="section-title">Food Gallery</h2>
+
+<div class="gallery">
+<img src="https://images.unsplash.com/photo-1544025162-d76694265947">
+<img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836">
+<img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1">
+<img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288">
+</div>
+
+</section>
+
+<section class="cta" id="contact">
+<h2>Reserve Your Table</h2>
+<p>Call us or book instantly</p>
+<button onclick="alert('Reservation request sent!')">Book Table</button>
+</section>
+
+<footer>© 2026 Fireside Grill Restaurant</footer>
+
+<div class="order-btn" onclick="alert('Opening WhatsApp order')">Order Now</div>
+
+<div class="lightbox" id="lightbox"><img></div>
+
+<script>
+
+const header=document.getElementById('header')
+window.addEventListener('scroll',()=>{
+if(window.scrollY>50){header.classList.add('scrolled')}
+else{header.classList.remove('scrolled')}
+})
+
+/* SCROLL ANIMATION */
+const cards=document.querySelectorAll('.card')
+
+function revealCards(){
+const trigger=window.innerHeight*0.85
+cards.forEach(card=>{
+const top=card.getBoundingClientRect().top
+if(top<trigger){card.classList.add('show')}
+})
+}
+
+window.addEventListener('scroll',revealCards)
+revealCards()
+
+/* STORY IMAGE ANIMATION */
+const storyImg=document.getElementById('storyImg')
+
+function revealStory(){
+const trigger=window.innerHeight*0.85
+const top=storyImg.getBoundingClientRect().top
+if(top<trigger){storyImg.classList.add('show')}
+}
+
+window.addEventListener('scroll',revealStory)
+
+/* MENU FILTER */
+function filterMenu(category){
+const cards=document.querySelectorAll('.card')
+cards.forEach(card=>{
+if(category==='all'||card.dataset.category===category){
+card.style.display='block'
+}else{
+card.style.display='none'
+}
+})
+}
+
+/* LIGHTBOX */
+const images=document.querySelectorAll('.gallery img')
+const lightbox=document.getElementById('lightbox')
+const lightImg=lightbox.querySelector('img')
+
+images.forEach(img=>{
+img.addEventListener('click',()=>{
+lightImg.src=img.src
+lightbox.classList.add('show')
+})
+})
+
+lightbox.addEventListener('click',()=>{
+lightbox.classList.remove('show')
+})
+
+</script>
+
+</body>
+</html>
